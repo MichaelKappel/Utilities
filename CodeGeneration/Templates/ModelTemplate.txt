@@ -1,0 +1,12 @@
+﻿using System;
+
+namespace Common.Interfaces.Models.General
+{
+    public class {name}Model
+    {
+        public {name}Model(String val){
+            this.{name} = val;
+        }
+        String {name} { get; set; }
+    }
+}
