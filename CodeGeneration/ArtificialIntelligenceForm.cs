@@ -1,6 +1,4 @@
-﻿using CodeGeneration.Common.Models.ChatGpt.Response;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,8 +11,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using static System.Net.WebRequestMethods;
-using CodeGeneration.Common.Models.ChatGpt.Request;
-using CodeGeneration.Common.Models.ChatGpt;
+using CodeGeneration.Common.Models.ChatGpt4;
+using CodeGeneration.Common.Models.ChatGpt4.Request;
+using CodeGeneration.Common.Models.ChatGpt4.Response;
 
 namespace CodeGeneration
 {
@@ -30,7 +29,7 @@ namespace CodeGeneration
 
         }
 
-        private void PopulateTreview(ChatCompletion chatCompletion)
+        private void PopulateTreview(ChatCompletionResponseDataModel chatCompletion)
         {
             // Populate the TreeView control
             TreeNode rootNode = new TreeNode("Chat Completion");
@@ -69,11 +68,11 @@ namespace CodeGeneration
             {
                 client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
 
-                Gpt4RequestDateModel requestData = new Gpt4RequestDateModel
+                RequestDataModel requestData = new RequestDataModel
                 {
                         Model = "gpt-4",
-                        Messages = new Common.Models.ChatGpt.Message[] {
-                        new Common.Models.ChatGpt.Message
+                        Messages = new MessageDataModel[] {
+                        new MessageDataModel
                         {
                             Role = "user",
                             Content = txtQuestion.Text,
@@ -93,11 +92,11 @@ namespace CodeGeneration
 
                 if (response.IsSuccessStatusCode)
                 {
-                    ChatCompletion chatCompletion = response.Content.ReadFromJsonAsync<ChatCompletion>().Result!;
+                    ChatCompletionResponseDataModel chatCompletion = response.Content.ReadFromJsonAsync<ChatCompletionResponseDataModel>().Result!;
                     PopulateTreview(chatCompletion);
 
                     String resultText = String.Empty; 
-                    foreach (Choice choice in chatCompletion.Choices)
+                    foreach (ChoiceDataModel choice in chatCompletion.Choices)
                     {
                         resultText += choice.Message.Content;
                     }

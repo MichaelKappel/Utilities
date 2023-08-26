@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CodeGeneration.Common.Models.ChatGpt.Response
+namespace CodeGeneration.Common.Models.ChatGpt4.Response
 {
-    public class Usage
+    public class UsageResponseDataModel
     {
         public int PromptTokens { get; set; }
         public int CompletionTokens { get; set; }
