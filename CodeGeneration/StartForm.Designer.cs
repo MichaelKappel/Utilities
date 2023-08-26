@@ -38,6 +38,7 @@
             ddlTemplate = new ComboBox();
             btnUpdateTemplate = new Button();
             btnAskAi = new Button();
+            btnCopyFiles = new Button();
             SuspendLayout();
             // 
             // txtInput
@@ -135,11 +136,22 @@
             btnAskAi.UseVisualStyleBackColor = true;
             btnAskAi.Click += btnAskAi_Click;
             // 
+            // btnCopyFiles
+            // 
+            btnCopyFiles.Location = new Point(109, 654);
+            btnCopyFiles.Name = "btnCopyFiles";
+            btnCopyFiles.Size = new Size(75, 23);
+            btnCopyFiles.TabIndex = 10;
+            btnCopyFiles.Text = "Copy Files";
+            btnCopyFiles.UseVisualStyleBackColor = true;
+            btnCopyFiles.Click += btnCopyFiles_Click;
+            // 
             // StartForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(955, 702);
+            Controls.Add(btnCopyFiles);
             Controls.Add(btnAskAi);
             Controls.Add(btnUpdateTemplate);
             Controls.Add(ddlTemplate);
@@ -169,5 +181,6 @@
         private ComboBox ddlTemplate;
         private Button btnUpdateTemplate;
         private Button btnAskAi;
+        private Button btnCopyFiles;
     }
 }

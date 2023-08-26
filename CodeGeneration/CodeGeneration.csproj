@@ -20,4 +20,12 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="NewFolder\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CodeGeneration.Common\CodeGeneration.Common.csproj" />
+  </ItemGroup>
+
 </Project>

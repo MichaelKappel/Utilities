@@ -121,7 +121,14 @@ namespace CodeGeneration
 
         private void btnAskAi_Click(object sender, EventArgs e)
         {
+            ArtificialIntelligenceForm form = new ArtificialIntelligenceForm();
+            form.Show();
+        }
 
+        private void btnCopyFiles_Click(object sender, EventArgs e)
+        {
+            CopyFilesWithChangesForm form = new CopyFilesWithChangesForm();
+            form.Show();
         }
     }
 }
