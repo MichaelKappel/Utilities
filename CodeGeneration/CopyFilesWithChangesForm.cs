@@ -90,7 +90,34 @@ namespace CodeGeneration
 
         private void btnGo_Click(object sender, EventArgs e)
         {
+            List<(String FilePath, String FileName, String FileContent)> destinationFiles = new();
 
+            string[] sourceFileWithPaths = Directory.GetFiles(txtSourceFolder.Text);
+            foreach (string sourceFileWithPath in sourceFileWithPaths)
+            {
+                String sourceFileContent = File.ReadAllText(sourceFileWithPath);
+
+                String sourceFileName = Path.GetFileName(sourceFileWithPath);
+
+                String destinationFileName = this.ApplyChanges(sourceFileName);
+                String destinationFileContent = this.ApplyChanges(sourceFileContent);
+
+                destinationFiles.Add((txtDestinationFolder.Text, destinationFileName, destinationFileContent));
+            }
+                 
+            foreach ((String FilePath, String FileName, String FileContent) destinationFile in destinationFiles)
+            {
+                if (!Directory.Exists(destinationFile.FilePath))
+                {
+                    Directory.CreateDirectory(destinationFile.FilePath);
+                }
+                using (FileStream newFile = File.OpenWrite($"{destinationFile.FilePath}\\{destinationFile.FileName}")){
+                    using (StreamWriter sr = new(newFile)) {
+                        sr.Write(destinationFile.FileContent);
+                    }
+                    newFile.Close();
+                }
+            }
         }
 
         private void btnDestinationFolder_Click(object sender, EventArgs e)
